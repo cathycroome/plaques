@@ -6,9 +6,7 @@ from plaque import get_filtered_data, get_plaques_for_month, random_plaque
 app = Flask(__name__)
 
 # ---------- Load and prepare data once, at startup ----------
-DATA_DIR = Path('/Users/cathycroome/data/plaques')
-T = pd.read_csv(DATA_DIR / 'open-plaques-United-Kingdom-2025-12-14.csv')
-
+T = pd.read_csv('/Users/cathycroome/code/open-plaques-United-Kingdom-2025-12-14.csv')
 SUBSET = get_filtered_data(T)
 
 MONTHS = [
