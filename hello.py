@@ -12,7 +12,8 @@ def hello_world():
     max_distance = request.args.get('max_distance', type=float)
     blue_only = 'blue_only' in request.args #might need checking later with checkbox functionality
     
-    T = pd.read_csv('/Users/cathycroome/code/open-plaques-United-Kingdom-2025-12-14.csv')
+    DATA_DIR = Path(__file__).parent
+    T = pd.read_csv(DATA_DIR / 'open-plaques-United-Kingdom-2025-12-14.csv')
     subset = get_filtered_data(T)
 
     # Get closest results for a given month

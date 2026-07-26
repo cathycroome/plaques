@@ -3,7 +3,8 @@ import pandas as pd
 from pathlib import Path
 from pandas import DataFrame
 
-T = pd.read_csv('/Users/cathycroome/code/open-plaques-United-Kingdom-2025-12-14.csv')
+DATA_DIR = Path(__file__).parent
+T = pd.read_csv(DATA_DIR / 'open-plaques-United-Kingdom-2025-12-14.csv')
 
 MONTH_ANGLES = {
     'January':   (60, 90),
