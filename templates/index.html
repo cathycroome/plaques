@@ -117,7 +117,7 @@
     font-size: 13px;
     color: var(--paper-dim);
     font-style: italic;
-    margin-top: -6px;
+    margin-top: 10px;
     margin-bottom: 18px;
   }
   @media (prefers-reduced-motion: reduce) { .plaque { animation: none; } }
@@ -275,10 +275,21 @@ distanceInput.addEventListener('input', () => {
   distanceValue.textContent = distanceInput.value + ' km';
 });
 
+function parseOrganisations(raw) {
+  if (!raw) return [];
+  const inner = String(raw).trim().replace(/^\[|\]$/g, '').trim();
+  if (!inner) return [];
+  return inner
+    .split(',')
+    .map(s => s.trim().replace(/^['"]|['"]$/g, ''))
+    .filter(Boolean);
+}
+
 function renderPlaque(p) {
-  const orgLine = p.organisations
-    ? `<div class="org">Erected by ${p.organisations}</div>`
-    : '';
+  const orgs = parseOrganisations(p.organisations);
+  const orgLine = orgs.length
+  ? `<div class="org">${orgs.join(' and ')}</div>`
+  : '';
 
   resultArea.innerHTML = `
     <div class="plaque">
