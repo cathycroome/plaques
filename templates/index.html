@@ -103,7 +103,7 @@
   @keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   .plaque .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--brass-bright); margin-bottom: 14px; }
   .plaque h2 { font-family: var(--font-display); font-size: clamp(22px, 4vw, 30px); margin: 0 0 8px; }
-  .plaque .subject { font-family: var(--font-mono); font-size: 13px; color: var(--brass-bright); margin-bottom: 18px; }
+  .plaque .subject { font-family: var(--font-mono); font-size: 13px; color: var(--brass-bright); margin-bottom: 8px; }
   .plaque .meta { display: flex; justify-content: center; gap: 26px; font-size: 14px; color: var(--paper-dim); border-top: 1px solid rgba(228,193,126,0.3); padding-top: 16px; }
   .plaque .meta strong { display: block; font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; color: var(--paper); margin-bottom: 4px; }
 
@@ -113,6 +113,13 @@
   }
   .error-state { color: var(--brass-bright); }
 
+  .plaque .org {
+    font-size: 13px;
+    color: var(--paper-dim);
+    font-style: italic;
+    margin-top: -6px;
+    margin-bottom: 18px;
+  }
   @media (prefers-reduced-motion: reduce) { .plaque { animation: none; } }
 </style>
 </head>
@@ -269,11 +276,16 @@ distanceInput.addEventListener('input', () => {
 });
 
 function renderPlaque(p) {
+  const orgLine = p.organisations
+    ? `<div class="org">Erected by ${p.organisations}</div>`
+    : '';
+
   resultArea.innerHTML = `
     <div class="plaque">
       <div class="kicker">${p.colour || 'unmarked'} plaque · ${p.area || 'UK'}</div>
       <h2>${p.lead_subject_name || 'Untitled plaque'}</h2>
       <div class="subject">${p.inscription || ''}</div>
+      ${orgLine}
       <div class="meta">
         <div><strong>Distance</strong>${Number(p.km).toFixed(1)} km</div>
         <div><strong>Bearing</strong>${Number(p.theta_deg).toFixed(1)}°</div>
