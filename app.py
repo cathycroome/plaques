@@ -5,7 +5,7 @@ from plaque import get_filtered_data, get_plaques_for_month, random_plaque
 
 app = Flask(__name__)
 
-# ---------- Load and prepare data once, at startup ----------
+# ---------- Load and prepare data once at startup ----------
 DATA_DIR = Path(__file__).parent
 T = pd.read_csv(DATA_DIR / 'open-plaques-United-Kingdom-2025-12-14.csv')
 
@@ -35,9 +35,6 @@ def random_plaque_route():
         return jsonify(found=False, message="No plaques found for this specification")
 
 
+# ---------- to run locally ----------
 if __name__ == "__main__":
-    app.run(debug=True) 
-
-# to run locally
-# if __name__ == "__main__":
-#     app.run(debug=True, port=5001)
+    app.run(debug=True, port=5001)

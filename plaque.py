@@ -1,10 +1,5 @@
 import numpy as np
-import pandas as pd
-from pathlib import Path
 from pandas import DataFrame
-
-DATA_DIR = Path(__file__).parent
-T = pd.read_csv(DATA_DIR / 'open-plaques-United-Kingdom-2025-12-14.csv')
 
 MONTH_ANGLES = {
     'January':   (60, 90),
@@ -60,7 +55,7 @@ def degrees_to_km(dx_deg, dy_deg, lat, km_per_degree = 111.0):
 
 def get_filtered_data(T):
     # format data frame
-    subset = T[['id', 'lead_subject_name', 'latitude', 'longitude',  'area',  'colour', 'inscription']].copy()
+    subset = T[['id', 'lead_subject_name', 'latitude', 'longitude',  'area',  'colour', 'inscription', 'organisations']].copy()
     subset = subset.dropna(subset=['latitude', 'longitude', 'lead_subject_name', 'colour'])
 
     # calculate r and theta and append to data frame
@@ -88,11 +83,3 @@ def random_plaque(matches: DataFrame):
         return None
 
     return matches.sample(1).iloc[0]
-
-
-
-
-# matches = get_plaques_for_month(month, subset, max_distance, False)
-
-# # Get random result for a given month
-# randomised_result = random_plaque(matches)
