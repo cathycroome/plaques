@@ -64,7 +64,10 @@ def get_filtered_data(T):
     km, theta_deg = cartesian_to_polar(x,y)                                 # convert to polar
     subset['km'] = km                                                       # approximate distances in km
     subset['theta_deg'] = theta_deg
-
+    subset['maps_url'] = (
+        "https://www.google.co.uk/maps/place/"
+        + subset.latitude.astype(str) + "," + subset.longitude.astype(str)
+    )
     return subset
 
 def get_plaques_for_month(month: str, df: DataFrame, max_distance, blue_only = False):
