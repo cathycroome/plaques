@@ -104,8 +104,17 @@
   .plaque .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--brass-bright); margin-bottom: 14px; }
   .plaque h2 { font-family: var(--font-display); font-size: clamp(22px, 4vw, 30px); margin: 0 0 8px; }
   .plaque .subject { font-family: var(--font-mono); font-size: 13px; color: var(--brass-bright); margin-bottom: 8px; }
-  .plaque .meta { display: flex; justify-content: center; gap: 26px; font-size: 14px; color: var(--paper-dim); border-top: 1px solid rgba(228,193,126,0.3); padding-top: 16px; }
+  .plaque .meta { display: flex; justify-content: center; align-items: center; gap: 26px; font-size: 14px; color: var(--paper-dim); border-top: 1px solid rgba(228,193,126,0.3); padding-top: 16px; }
   .plaque .meta strong { display: block; font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; color: var(--paper); margin-bottom: 4px; }
+  .map-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--brass-bright); text-decoration: none;
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+    border: 1px solid var(--line); border-radius: 4px; padding: 8px 12px;
+    transition: background 0.2s ease;
+  }
+  .map-link:hover { background: rgba(228,193,126,0.15); }
+  .map-link svg { width: 14px; height: 14px; flex-shrink: 0; }
 
   .empty-state, .error-state {
     text-align: center; color: var(--paper-dim); font-size: 14px;
@@ -300,6 +309,10 @@ function renderPlaque(p) {
       <div class="meta">
         <div><strong>Distance</strong>${Number(p.km).toFixed(1)} km</div>
         <div><strong>Bearing</strong>${Number(p.theta_deg).toFixed(1)}°</div>
+        ${p.maps_url ? `<div><a class="map-link" href="${p.maps_url}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.5 7.5 12.5 7.5 12.5s7.5-7 7.5-12.5C19.5 5.36 16.14 2 12 2zm0 10.25a2.75 2.75 0 1 1 0-5.5 2.75 2.75 0 0 1 0 5.5z"/></svg>
+          Maps
+        </a></div>` : ''}
       </div>
     </div>`;
 }
