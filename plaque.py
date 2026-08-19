@@ -16,6 +16,9 @@ MONTH_ANGLES = {
     'December':  (90, 120),
 }
 
+DEFAULT_CENTRE_LAT = 53.4065
+DEFAULT_CENTRE_LONG = -2.2086
+
 def cartesian_to_polar(x, y):
     """
     Convert Cartesian coordinates to polar coordinates.
@@ -32,7 +35,7 @@ def cartesian_to_polar(x, y):
 
     return r, theta_deg
 
-def relative_location(lat, long, centre_lat=53.4065, centre_long=-2.2086):
+def relative_location(lat, long, centre_lat=DEFAULT_CENTRE_LAT, centre_long=DEFAULT_CENTRE_LONG):
     """
     Return (x, y) offset of a point from a fixed centre point,
     in degrees of longitude/latitude (not true distance).
@@ -53,7 +56,8 @@ def degrees_to_km(dx_deg, dy_deg, lat, km_per_degree = 111.0):
     
     return x_km, y_km
 
-def get_filtered_data(T):
+ 
+def get_filtered_data(T, centre_lat=DEFAULT_CENTRE_LAT, centre_long=DEFAULT_CENTRE_LONG):
     # format data frame
     subset = T[['id', 'lead_subject_name', 'latitude', 'longitude',  'area',  'colour', 'inscription', 'organisations']].copy()
     subset = subset.dropna(subset=['latitude', 'longitude', 'lead_subject_name', 'colour'])
