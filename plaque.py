@@ -63,7 +63,7 @@ def get_filtered_data(T, centre_lat=DEFAULT_CENTRE_LAT, centre_long=DEFAULT_CENT
     subset = subset.dropna(subset=['latitude', 'longitude', 'lead_subject_name', 'colour'])
 
     # calculate r and theta and append to data frame
-    dx_deg, dy_deg = relative_location(subset.latitude, subset.longitude)   # change in lat and long relative to set centre point
+    dx_deg, dy_deg = relative_location(subset.latitude, subset.longitude, centre_lat, centre_long)   # change in lat and long relative to set centre point
     x, y = degrees_to_km(dx_deg, dy_deg, subset.latitude)                   # convert to cartesian (approximate distances in km)
     km, theta_deg = cartesian_to_polar(x,y)                                 # convert to polar
     subset['km'] = km                                                       # approximate distances in km
