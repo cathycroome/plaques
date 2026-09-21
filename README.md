@@ -1,10 +1,10 @@
 # Plaques
 
-A small web app that picks you a random UK blue plaque to go and visit, based on the current month, a centre point of your choosing, and how far you're willing to travel.
+A web app that picks a random UK plaque to visit based on the current month, a centre point, and distance to travel.
 
-**Live app:** https://plaques-x80r.onrender.com/
+**Live app:** https://plaques-x80r.onrender.com/. First open takes approx 30 secs to load.
 
-Plaque data comes from [OpenPlaques](https://openplaques.org/), an open dataset of commemorative plaques. This repo currently uses a static CSV snapshot for the United Kingdom (`open-plaques-United-Kingdom-2025-12-14.csv`).
+Plaque data comes from [OpenPlaques](https://openplaques.org/), an open dataset of commemorative plaques. This repo currently uses a static CSV snapshot for the United Kingdom (`open-plaques-United-Kingdom-2025-12-14.csv`). 
 
 ## Logic
 
